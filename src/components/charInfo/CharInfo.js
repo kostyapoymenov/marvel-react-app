@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom"; 
 import PropTypes from 'prop-types'; 
 
 import useMarvelService from '../../services/MarvelService';
@@ -54,6 +55,8 @@ const CharInfo = (props) =>  {
 const View = ({char}) => {
     const {name, description, thumbnail, homepage, wiki, comics} = char;
 
+    const getIdComicToLink = (url) => url.split('/').pop();
+
     let imgStyle = {'objectFit' : 'cover'};
     if (thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg') {
         imgStyle = {'objectFit' : 'unset'};
@@ -66,9 +69,9 @@ const View = ({char}) => {
                     key={i} 
                     className="char__comics-item"
                 >
-                    <a href={item.resourceURI}>
+                    <Link to={`comics/${getIdComicToLink(item.resourceURI)}`}>
                         {item.name}
-                    </a>
+                    </Link>
                 </li>
             )
         }
