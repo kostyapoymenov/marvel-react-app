@@ -89,6 +89,6 @@
         transform: translateY(-5px);
     }
     &:disabled {
-        opacity: .5
+        filter: grayscale(.5);
     }
 }
